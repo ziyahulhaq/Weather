@@ -16,6 +16,30 @@ body{
     border-radius: 20px;
     text-align: center;   
 }
-.fav{
-    background-color: black;
+
+.fav {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid #040404;
+  background: transparent;
+  color: #f30808;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+    box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.3);
+
+}
+
+.fav:hover {
+  background: #030203;
+  color: #fff;
+}
+
+.fav.active {
+  background: #ff4d6d;
+  color: #fff;
 }
