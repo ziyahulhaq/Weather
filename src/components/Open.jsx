@@ -47,12 +47,12 @@ function Open() {
       const response = await fetch(url);
       const data = await response.json();
 
-      setweatherdata[{
+      setweatherdata({
         humidity: data.main.humidity,
         windspeed: data.wind.speed,
         temperature: data.main.temp,
         location: data.name,
-      }];
+      });
     } catch (error) {
       console.log(error);
       setError(error);
@@ -73,7 +73,7 @@ function Open() {
     <div className="Weather">
       <div className="search-bar">
         <form className="src-btn" onSubmit={search}>
-          <Link to={"about"} 
+          <Link to="about"
           state={{ favData }}>
             <MdOutlineFavorite
               className="fav-icon"
@@ -100,11 +100,13 @@ function Open() {
 
       <div className="btn-slide">
         <p className="location">{weatherdata.location}</p>
-
+<div className="favr">
        <MdOutlineFavorite
-  className="favr"
+  className="favr-icon"
   onClick={() => AddFavv(weatherdata)}
 />
+<span class="favr-text">FAV</span>
+</div>
       </div>
 
       <div className="weather-data">
