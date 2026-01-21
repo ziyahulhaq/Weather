@@ -10,7 +10,7 @@ const About = () => {
         <h1>Weather Now</h1>
         <p>Get real-time weather updates for any city in the world</p>
 
-        <Link to="about">
+        <Link to="/open">
           <button className="weather-btn">Check Weather</button>
         </Link>
       </div>

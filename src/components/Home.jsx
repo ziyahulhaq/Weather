@@ -3,6 +3,8 @@ import "./Home.css";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { Link, useLocation } from "react-router-dom";
 import { TiRefresh } from "react-icons/ti";
+import { MdDelete } from "react-icons/md";
+
 
 const API_KEY = "87c6e5db41cc3ad5da364d6a15b705a1";
 
@@ -15,7 +17,7 @@ const Home = () => {
   const refreshWeather = async (city, index) => {
     try {
       const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=imperial`
       );
       const data = await res.json();
 
@@ -34,11 +36,17 @@ const Home = () => {
     }
   };
 
+  function onDlt(){
+        setFavData((prev) => prev.filter((_, city) => city == city));
+  }
+
   return (
     <div className="Weather">
+    
       <div className="search-bar">
-        <Link to="/">
+        <Link to="/open">
           <IoMdArrowRoundBack className="fav" />
+          
         </Link>
       </div>
 
@@ -49,6 +57,9 @@ const Home = () => {
               className="favor"
               onClick={() => refreshWeather(item.location, index)}
             />
+             <MdDelete className="favour"
+              onClick={onDlt}
+             />
 
             <p className="location-card">{item.location}</p>
             <p className="temp-caed">{item.temperature}°C</p>

@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 function Open() {
   const inputRef = useRef();
   const [weatherdata, setweatherdata] = useState(false);
+  // const [isOn, setIsOn] = useState(false);
+  const [unit, setUnit] = useState("metric"); // metric | imperial
 
   const [favData, setFavData] = useState(() => {
     const saved = localStorage.getItem("favData");
@@ -43,7 +45,9 @@ function Open() {
     }
 
     try {
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${ApiKey}&units=metric`;
+      console.log("hi");
+      
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${ApiKey}&units=${unit}`;
       const response = await fetch(url);
       const data = await response.json();
 
@@ -53,6 +57,7 @@ function Open() {
         temperature: data.main.temp,
         location: data.name,
       });
+      setError("")
     } catch (error) {
       console.log(error);
       setError(error);
@@ -73,12 +78,8 @@ function Open() {
     <div className="Weather">
       <div className="search-bar">
         <form className="src-btn" onSubmit={search}>
-          <Link to="about"
-          state={{ favData }}>
-            <MdOutlineFavorite
-              className="fav-icon"
-              // onClick={() => AddFavv(weatherdata.location)}
-            />
+          <Link to="/home" state={{ favData }}>
+            <MdOutlineFavorite className="fav-icon" />
           </Link>
 
           <input ref={inputRef} type="text" placeholder="search" />
@@ -88,25 +89,32 @@ function Open() {
 
       <h1 className="city-font">{error && "City not found"}</h1>
 
-      <img
-        src="/images/sun-39.png"
-        alt=""
-        className="weather-icon"
-      />
+      <img src="/images/sun-39.png" alt="" className="weather-icon" />
 
-      <p className="temperature">
-        {weatherdata.temperature}°C
-      </p>
+      <p className="temperature">{weatherdata.temperature}°C</p>
 
       <div className="btn-slide">
         <p className="location">{weatherdata.location}</p>
-<div className="favr">
-       <MdOutlineFavorite
-  className="favr-icon"
-  onClick={() => AddFavv(weatherdata)}
-/>
-<span class="favr-text">FAV</span>
-</div>
+
+        {/* <button
+          className={`glass-toggle ${isOn ? "active" : ""}`}
+          aria-pressed={isOn}
+          onClick={() => setIsOn(!isOn)}
+        /> */}
+        <button
+          className="glass-toggle"
+          onClick={() => setUnit(unit === "metric" ? "imperial" : "metric")}
+        >
+          {unit === "metric" ? "Swatch to °f" : "Swiych to °c"}
+        </button>
+
+        <div className="favr">
+          <MdOutlineFavorite
+            className="favr-icon"
+            onClick={() => AddFavv(weatherdata)}
+          />
+          <span class="favr-text">FAV</span>
+        </div>
       </div>
 
       <div className="weather-data">

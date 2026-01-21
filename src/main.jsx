@@ -6,9 +6,10 @@ import About from './components/About'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 const router=createBrowserRouter([
-  {path:"first",element:<About />},
-  {path:"/",element:<Open />},
-    {path:"about",element:<Home />}
+  {path:"/",element:<About />},
+  {path:"/home",element:<Home />},
+  {path:"/open",element:<Open />},
+    
   ]);
 
 createRoot(document.getElementById('root')).render(
