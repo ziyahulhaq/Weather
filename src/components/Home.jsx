@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import "./Home.css";
-import { IoMdArrowRoundBack } from "react-icons/io";
 import { Link, useLocation } from "react-router-dom";
 import { TiRefresh } from "react-icons/ti";
-import { MdDelete } from "react-icons/md";
+import { IoIosArrowBack } from "react-icons/io";
 
 
 const API_KEY = "87c6e5db41cc3ad5da364d6a15b705a1";
@@ -36,16 +35,15 @@ const Home = () => {
     }
   };
 
-  function onDlt(){
-        setFavData((prev) => prev.filter((_, city) => city == city));
-  }
+
 
   return (
-    <div className="Weather">
+    <div className="Weather-last">
     
+
       <div className="search-bar">
         <Link to="/open">
-          <IoMdArrowRoundBack className="fav" />
+          <IoIosArrowBack className="back" />
           
         </Link>
       </div>
@@ -57,14 +55,15 @@ const Home = () => {
               className="favor"
               onClick={() => refreshWeather(item.location, index)}
             />
-             <MdDelete className="favour"
+             {/* <MdDelete className="favour"
               onClick={onDlt}
-             />
-
+             /> */}
+            <div className="all-value">
             <p className="location-card">{item.location}</p>
             <p className="temp-caed">{item.temperature}°C</p>
             <p className="humidity-card">{item.humidity}%</p>
             <p className="wind-card">{item.windspeed} km/h</p>
+             </div>
           </div>
         ))}
     </div>

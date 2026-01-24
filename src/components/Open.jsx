@@ -7,7 +7,7 @@ import { WiDayWindy } from "react-icons/wi";
 import { WiHumidity } from "react-icons/wi";
 import { GiPressureCooker } from "react-icons/gi";
 import { FiSunrise } from "react-icons/fi";
-
+import About from "./About";
 
 function Open() {
   const inputRef = useRef();
@@ -83,6 +83,7 @@ function Open() {
 
   return (
     <div className="Weather">
+     
       <div className="search-bar">
         <form className="src-btn" onSubmit={search}>
           <Link to="/home" state={{ favData }}>
@@ -107,7 +108,7 @@ function Open() {
           className="glass-toggle"
           onClick={() => setUnit(unit === "metric" ? "imperial" : "metric")}
         >
-          {unit === "metric" ? "Swatch to °f" : "Swiych to °c"}
+          {unit === "metric" ? "°f" : "°c"}
         </button>
 
         <div className="favr">
