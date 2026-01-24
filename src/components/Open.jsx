@@ -3,6 +3,11 @@ import "./Open.css";
 import { CiSearch } from "react-icons/ci";
 import { MdOutlineFavorite } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { WiDayWindy } from "react-icons/wi";
+import { WiHumidity } from "react-icons/wi";
+import { GiPressureCooker } from "react-icons/gi";
+import { FiSunrise } from "react-icons/fi";
+
 
 function Open() {
   const inputRef = useRef();
@@ -46,7 +51,7 @@ function Open() {
 
     try {
       console.log("hi");
-      
+
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${ApiKey}&units=${unit}`;
       const response = await fetch(url);
       const data = await response.json();
@@ -56,8 +61,10 @@ function Open() {
         windspeed: data.wind.speed,
         temperature: data.main.temp,
         location: data.name,
+        pressure: data.main.pressure,
+        sunrise: data.sys.sunrise,
       });
-      setError("")
+      setError("");
     } catch (error) {
       console.log(error);
       setError(error);
@@ -88,19 +95,14 @@ function Open() {
       </div>
 
       <h1 className="city-font">{error && "City not found"}</h1>
+      <div className="all-in"></div>
 
-      <img src="/images/sun-39.png" alt="" className="weather-icon" />
-
-      <p className="temperature">{weatherdata.temperature}°C</p>
-
+      {/* <img src="/images/sun-39.png" alt="" width="380px" height="260px" className="weather-icon" /> */}
+      <div className="both-value">
+        <p className="location-date">{weatherdata.location}</p>
+        <p className="temperature">{weatherdata.temperature}°C</p>
+      </div>
       <div className="btn-slide">
-        <p className="location">{weatherdata.location}</p>
-
-        {/* <button
-          className={`glass-toggle ${isOn ? "active" : ""}`}
-          aria-pressed={isOn}
-          onClick={() => setIsOn(!isOn)}
-        /> */}
         <button
           className="glass-toggle"
           onClick={() => setUnit(unit === "metric" ? "imperial" : "metric")}
@@ -116,21 +118,36 @@ function Open() {
           <span class="favr-text">FAV</span>
         </div>
       </div>
-
       <div className="weather-data">
         <div className="col">
-          <img src="/images/humidity.png" alt="" height="40" />
-          <div>
+          <div className="humidity-p">
+            <WiHumidity size={37} />
             <p>{weatherdata?.humidity}%</p>
             <span>Humidity</span>
           </div>
         </div>
+        <div className="coll">
+          <div className="wind-p">
+            <GiPressureCooker size={37} />
+            <p className="weather-data-prsr">{weatherdata.pressure}</p>
+            <span className="prsr">pressure</span>
+          </div>
+        </div>
 
-        <div className="col">
-          <img src="/public/images/width.jpeg" alt="" height="30" />
-          <div>
-            <p>{weatherdata.windspeed}km/h</p>
-            <span>Wind Speed</span>
+        <div className="colli">
+          <div className="wind-p">
+            {/* <GiPressureCooker size={37} /> */}
+            <FiSunrise size={37}/>
+            <p className="weather-data-rise">{weatherdata.sunrise}</p>
+            <span className="prsr">sun</span>
+          </div>
+        </div>
+
+        <div className="coll-prs">
+          <div className="pressure-p">
+            <WiDayWindy size={37} />
+            <p className="pressure-data">{weatherdata.windspeed}km/h</p>
+            <span className="wind-data">Wind</span>
           </div>
         </div>
       </div>
