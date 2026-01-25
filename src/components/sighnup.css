@@ -10,19 +10,47 @@ body{
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: slateblue;
+  background: #fff;
+    background-size: cover;
+
 }
 .wrapper{
     position: relative;
     width: 420px;
-    height: 450px;
+    height: 550px;
     background: seagreen;
     border-radius: 10px;
     color: #fff;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    transition: height .2s ease;
+    background-image: url('/images/Wallpaper.jpeg');
+    background-size: cover;
+}
+.wrapper.active{
+    height: 520px;
 }
 .wrapper .for-box{
     width: 100%;
     padding: 40px;
+}
+.wrapper .for-box.login{
+    transition: translate .18s ease;
+    translate: 0;
+}
+.wrapper .for-box.register{
+    position: absolute;
+    transition: none;
+    translate: 400px;
+}
+.wrapper.active .for-box.login{
+    transition: none;
+    translate: -400px;
+}
+.wrapper.active .for-box.register{
+    transition: translate .18s ease;
+    translate: 0;
 }
 form h1{
     font-size: 36px;
