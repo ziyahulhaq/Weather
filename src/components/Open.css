@@ -65,6 +65,24 @@
   cursor: pointer;
   transition: all 0.25s ease;
 }
+.To-home{
+    position: absolute;
+   left: 1px;
+  top: -1%;
+
+    width: 42px;
+  height: 42px;
+
+    display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+  font-size: 20px;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
 .col{
   position: absolute;
   left: 380px;

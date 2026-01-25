@@ -7,7 +7,7 @@ import { WiDayWindy } from "react-icons/wi";
 import { WiHumidity } from "react-icons/wi";
 import { GiPressureCooker } from "react-icons/gi";
 import { FiSunrise } from "react-icons/fi";
-import About from "./About";
+import { IoIosArrowBack } from "react-icons/io";
 
 function Open() {
   const inputRef = useRef();
@@ -83,12 +83,16 @@ function Open() {
 
   return (
     <div className="Weather">
-     
+    <Link to="/second">
+      <IoIosArrowBack className="To-home"/>
+      </Link>
+
       <div className="search-bar">
         <form className="src-btn" onSubmit={search}>
           <Link to="/home" state={{ favData }}>
             <MdOutlineFavorite className="fav-icon" />
           </Link>
+
 
           <input ref={inputRef} type="text" placeholder="search" />
           <CiSearch type="submit" className="search-icon" />
